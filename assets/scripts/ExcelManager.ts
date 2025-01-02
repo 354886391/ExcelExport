@@ -66,7 +66,9 @@ export default class ExcelManager extends Component {
         const reader = new FileReader();
         reader.onload = (e) => {
             this.excelContent = JSON.parse(reader.result as string);
-            this.excelContent.splice(0, 0, this.getTypes());    // 添加类型
+            if(this.excelContent instanceof Array){
+                this.excelContent.splice(0, 0, this.getTypes());    // 添加类型
+            }
         };
         reader.readAsText(file, "UTF-8");
     }
